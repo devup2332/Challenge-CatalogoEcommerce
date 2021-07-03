@@ -1,0 +1,39 @@
+{
+   "productos": [
+      {
+         "id": 1,
+         "title": "Jeans Dolce",
+         "category": {
+            "id": 1,
+            "title": "Pantalones"
+         },
+         "description": "Jeans negros de ultimo modelo",
+         "price": 800,
+         "pictureUrl": "https://static.dafiti.com.ar/p/levis-5892-141525-1-zoom.jpg"
+      },
+      {
+         "id": 2,
+         "title": "Remera Lisa",
+         "category": {
+            "id": 2,
+            "title": "Remeras"
+         },
+         "description": "Remera blanca lisa para verano",
+         "price": 300,
+         "pictureUrl": "https://static.dafiti.com.ar/p/g4-0263-890783-1-zoom.jpg"
+      },
+      {
+         "id": 3,
+         "category": {
+            "id": 3,
+            "title": "Zapatillas"
+         },
+         "title": "Zapatillas Vans",
+         "description": "Zapatillas OldSkool vans",
+         "price": 1500,
+         "pictureUrl": "https://static.dafiti.com.ar/p/adidas-5289-627494-1-zoom.jpg"
+      }
+   ]
+   
+}
+
