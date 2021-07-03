@@ -1,31 +1,24 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 
-let timer ; 
+let timer;
 
 function useGetData(url) {
-   const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-   const getData = async (url) => {
-      const res = await fetch(url,{
-         method: "GET"
-      })
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(url, {
+        method: "GET",
+      });
 
-      const {productos} = await res.json();
-      setProducts(productos)
-      return productos
-   }
+      const { productos } = await res.json();
+      setProducts(productos);
+      return productos;
+    };
+    getData();
+  }, [url]);
 
-   useEffect(()=>{
-      timer = setTimeout(()=> {
-         getData(url);
-      },2000)
-
-      return () => {
-         clearTimeout(timer);
-      }
-   },[])
-
-   return{products, getData}
+  return { products };
 }
 
-export default useGetData
+export default useGetData;

@@ -1,38 +1,31 @@
-import React, {useEffect, useState}from 'react'
-import { useParams } from 'react-router-dom'
-import useGetData from '../../components/products/UseGetData';
-import ItemList from '../../components/products/ItemList';
-
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useGetData from "../../components/products/UseGetData";
+import ItemList from "../../components/products/ItemList";
 
 function CategoryView() {
-   
-   const {categoryId} = useParams();
-   const {products, getData} = useGetData('https://mocki.io/v1/8e03f7fa-59ee-45ea-bae6-f18801902b7b');
-   
-   const [productosAFiltrar, setProductosAFiltrar] = useState([]);
+  const { categoryId } = useParams();
+  const { products } = useGetData(
+    "https://mocki.io/v1/8e03f7fa-59ee-45ea-bae6-f18801902b7b"
+  );
 
-   const filterProducts = async() => {
-      let data = await getData('https://mocki.io/v1/8e03f7fa-59ee-45ea-bae6-f18801902b7b')
+  const [productosAFiltrar, setProductosAFiltrar] = useState([]);
+  //Convert category to number and added product as dependecy of use effect with category id
+  useEffect(() => {
+    if (products.length > 0) {
+      const data = products?.filter((product) => {
+        return product?.category?.id === parseInt(categoryId);
+      });
+      setProductosAFiltrar(data);
+    }
+    return;
+  }, [categoryId, products]);
 
-      
-      data = data.filter( (product) => {
-         return product?.category?.id === categoryId
-      }) 
-      setProductosAFiltrar(data)
-      console.log(categoryId)
-      console.log(data)
-
-   }
-
-   useEffect(() => {
-      return(filterProducts())
-   }, [categoryId])
-
-   return (
-      <div>
-         <ItemList products={productosAFiltrar}/>
-      </div>
-   )
+  return (
+    <div>
+      <ItemList products={productosAFiltrar} />
+    </div>
+  );
 }
 
-export default CategoryView
+export default CategoryView;
